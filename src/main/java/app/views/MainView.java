@@ -23,6 +23,10 @@ public class MainView extends JDialog {
     public JButton termsDeleteButton;
     public JTextField termsTermField;
     public JButton termsSaveButton;
+    public JButton schedulesSaveButton;
+    public JButton schedulesDeleteButton;
+    public JTable schedulesTable;
+    public JFormattedTextField schedulesTimeInput;
 
     public MainView() {
         super();

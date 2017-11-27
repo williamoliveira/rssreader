@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.views.MainView;
 import shared.entities.post.PostRepository;
+import shared.entities.schedule.ScheduleRepository;
 import shared.entities.site.SiteRepository;
 import shared.entities.term.TermRepository;
 
@@ -11,14 +12,17 @@ public class MainController {
     private PostRepository postRepository;
     private SiteRepository siteRepository;
     private TermRepository termRepository;
+    private ScheduleRepository scheduleRepository;
     private MainView mainView;
     
     public MainController(PostRepository postRepository, 
                           SiteRepository siteRepository, 
-                          TermRepository termRepository) {
+                          TermRepository termRepository, 
+                          ScheduleRepository scheduleRepository) {
         this.postRepository = postRepository;
         this.siteRepository = siteRepository;
         this.termRepository = termRepository;
+        this.scheduleRepository = scheduleRepository;
         
         setLookAndFeel();
         setupComponents();
@@ -38,6 +42,8 @@ public class MainController {
                 new PostsController(postRepository, mainView);
         TermsController termsController =
                 new TermsController(termRepository, mainView);
+        SchedulesController schedulesController =
+                new SchedulesController(scheduleRepository, mainView);
     }
 
     private void setLookAndFeel() {

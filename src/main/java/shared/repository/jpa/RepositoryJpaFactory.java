@@ -1,5 +1,7 @@
 package shared.repository.jpa;
 
+import shared.entities.schedule.ScheduleRepository;
+import shared.entities.schedule.ScheduleRepositoryJpa;
 import shared.entities.site.SiteRepository;
 import shared.entities.site.SiteRepositoryJpa;
 import shared.entities.term.TermRepository;
@@ -40,4 +42,10 @@ public class RepositoryJpaFactory extends RepositoryFactory {
     public TermRepository getTermRepository() {
         return new TermRepositoryJpa(manager);
     }
+
+    @Override
+    public ScheduleRepository getScheduleRepository() {
+        return new ScheduleRepositoryJpa(manager);
+    }
+
 }

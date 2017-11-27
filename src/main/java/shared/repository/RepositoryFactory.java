@@ -1,5 +1,6 @@
 package shared.repository;
 
+import shared.entities.schedule.ScheduleRepository;
 import shared.entities.site.SiteRepository;
 import shared.entities.term.TermRepository;
 import shared.repository.jpa.RepositoryJpaFactory;
@@ -20,4 +21,5 @@ public abstract class RepositoryFactory {
     public abstract PostRepository getPostRepository();
     public abstract SiteRepository getSiteRepository();
     public abstract TermRepository getTermRepository();
+    public abstract ScheduleRepository getScheduleRepository();
 }
