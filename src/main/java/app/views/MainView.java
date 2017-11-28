@@ -23,6 +23,7 @@ public class MainView extends JDialog {
     public JTable schedulesTable;
     public JFormattedTextField schedulesTimeInput;
     public JButton verifyNowButton;
+    public JButton openButton;
 
     public MainView() {
         super();

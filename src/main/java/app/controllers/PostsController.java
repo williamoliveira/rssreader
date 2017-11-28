@@ -8,6 +8,8 @@ import shared.entities.site.SiteRepository;
 import shared.entities.term.TermRepository;
 import shared.services.rss.FetchAndSave;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.List;
 
 public class PostsController {
@@ -35,6 +37,7 @@ public class PostsController {
         mainView.postsTable.setModel(new PostsTableModel());
 
         mainView.verifyNowButton.addActionListener((action) -> verifyNow());
+        mainView.openButton.addActionListener((action) -> open());
     }
 
     public void refreshPostsTable() {
@@ -47,4 +50,25 @@ public class PostsController {
         refreshPostsTable();
     }
 
+    private void open() {
+        Post post = getSelectedPost();
+
+        openWebpage(post.getUrl());
+    }
+
+    private Post getSelectedPost() {
+        int index = mainView.postsTable.getSelectedRow();
+
+        return ((PostsTableModel)mainView.postsTable.getModel())
+                .getResources()
+                .get(index);
+    }
+
+    public void openWebpage(String urlString) {
+        try {
+            Desktop.getDesktop().browse(new URL(urlString).toURI());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
