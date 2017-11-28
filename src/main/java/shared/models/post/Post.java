@@ -1,4 +1,4 @@
-package shared.entities.post;
+package shared.models.post;
 
 import shared.repository.jpa.Timestamped;
 

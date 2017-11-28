@@ -1,4 +1,4 @@
-package shared.entities.term;
+package shared.models.term;
 
 import shared.repository.jpa.RepositoryJpa;
 

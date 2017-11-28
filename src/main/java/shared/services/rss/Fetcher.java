@@ -3,9 +3,9 @@ package shared.services.rss;
 import com.github.kevinsawicki.http.HttpRequest;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
-import shared.entities.post.Post;
-import shared.entities.site.Site;
-import shared.entities.term.Term;
+import shared.models.post.Post;
+import shared.models.site.Site;
+import shared.models.term.Term;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

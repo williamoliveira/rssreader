@@ -1,5 +1,4 @@
 main.db
 target
 .idea
-app.log
-daemon.log
+logs

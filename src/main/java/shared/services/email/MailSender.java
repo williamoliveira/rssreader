@@ -7,9 +7,9 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-public class EmailSender {
+public class MailSender {
 
-    private static Logger logger = LoggerFactory.getLogger(EmailSender.class);
+    private static Logger logger = LoggerFactory.getLogger(MailSender.class);
 
     public static void send(String to, String subject, String text) {
         // Sender's email ID needs to be mentioned

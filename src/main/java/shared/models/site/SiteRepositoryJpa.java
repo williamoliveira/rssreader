@@ -1,4 +1,4 @@
-package shared.entities.site;
+package shared.models.site;
 
 import shared.repository.jpa.RepositoryJpa;
 

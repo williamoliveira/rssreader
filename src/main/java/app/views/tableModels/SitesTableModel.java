@@ -1,6 +1,6 @@
 package app.views.tableModels;
 
-import shared.entities.site.Site;
+import shared.models.site.Site;
 
 public class SitesTableModel extends ResourceTableModel<Site>{
 

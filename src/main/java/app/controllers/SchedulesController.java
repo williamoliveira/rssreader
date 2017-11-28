@@ -2,8 +2,8 @@ package app.controllers;
 
 import app.views.MainView;
 import app.views.tableModels.SchedulesTableModel;
-import shared.entities.schedule.Schedule;
-import shared.entities.schedule.ScheduleRepository;
+import shared.models.schedule.Schedule;
+import shared.models.schedule.ScheduleRepository;
 import shared.rmi.DaemonRemoteInterface;
 
 import javax.swing.*;

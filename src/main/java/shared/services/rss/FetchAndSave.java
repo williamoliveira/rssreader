@@ -1,12 +1,12 @@
 package shared.services.rss;
 
-import shared.entities.post.Post;
-import shared.entities.post.PostRepository;
-import shared.entities.site.Site;
-import shared.entities.site.SiteRepository;
-import shared.entities.term.Term;
-import shared.entities.term.TermRepository;
-import shared.services.email.EmailSender;
+import shared.models.post.Post;
+import shared.models.post.PostRepository;
+import shared.models.site.Site;
+import shared.models.site.SiteRepository;
+import shared.models.term.Term;
+import shared.models.term.TermRepository;
+import shared.services.email.MailSender;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +37,7 @@ public class FetchAndSave {
         ));
 
         // envia emails
-        newPosts.forEach(post -> EmailSender.send(
+        newPosts.forEach(post -> MailSender.send(
                 "test@mail.com",
                 post.getTitle(),
                 post.getUrl())

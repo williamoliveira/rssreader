@@ -2,8 +2,8 @@ package app.controllers;
 
 import app.views.MainView;
 import app.views.tableModels.SitesTableModel;
-import shared.entities.site.Site;
-import shared.entities.site.SiteRepository;
+import shared.models.site.Site;
+import shared.models.site.SiteRepository;
 
 import java.util.List;
 

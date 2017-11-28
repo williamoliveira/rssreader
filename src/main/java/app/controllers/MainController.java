@@ -2,10 +2,10 @@ package app.controllers;
 
 import app.controllers.rmi.Server;
 import app.views.MainView;
-import shared.entities.post.PostRepository;
-import shared.entities.schedule.ScheduleRepository;
-import shared.entities.site.SiteRepository;
-import shared.entities.term.TermRepository;
+import shared.models.post.PostRepository;
+import shared.models.schedule.ScheduleRepository;
+import shared.models.site.SiteRepository;
+import shared.models.term.TermRepository;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;

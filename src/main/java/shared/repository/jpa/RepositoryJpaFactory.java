@@ -1,14 +1,14 @@
 package shared.repository.jpa;
 
-import shared.entities.schedule.ScheduleRepository;
-import shared.entities.schedule.ScheduleRepositoryJpa;
-import shared.entities.site.SiteRepository;
-import shared.entities.site.SiteRepositoryJpa;
-import shared.entities.term.TermRepository;
-import shared.entities.term.TermRepositoryJpa;
+import shared.models.schedule.ScheduleRepository;
+import shared.models.schedule.ScheduleRepositoryJpa;
+import shared.models.site.SiteRepository;
+import shared.models.site.SiteRepositoryJpa;
+import shared.models.term.TermRepository;
+import shared.models.term.TermRepositoryJpa;
 import shared.repository.RepositoryFactory;
-import shared.entities.post.PostRepository;
-import shared.entities.post.PostRepositoryJpa;
+import shared.models.post.PostRepository;
+import shared.models.post.PostRepositoryJpa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

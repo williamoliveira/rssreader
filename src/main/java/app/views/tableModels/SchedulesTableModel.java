@@ -1,6 +1,6 @@
 package app.views.tableModels;
 
-import shared.entities.schedule.Schedule;
+import shared.models.schedule.Schedule;
 
 public class SchedulesTableModel extends ResourceTableModel<Schedule>{
 

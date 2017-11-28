@@ -2,8 +2,8 @@ package app.controllers;
 
 import app.views.MainView;
 import app.views.tableModels.TermsTableModel;
-import shared.entities.term.Term;
-import shared.entities.term.TermRepository;
+import shared.models.term.Term;
+import shared.models.term.TermRepository;
 
 import java.util.List;
 

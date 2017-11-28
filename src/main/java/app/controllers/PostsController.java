@@ -2,10 +2,10 @@ package app.controllers;
 
 import app.views.MainView;
 import app.views.tableModels.PostsTableModel;
-import shared.entities.post.Post;
-import shared.entities.post.PostRepository;
-import shared.entities.site.SiteRepository;
-import shared.entities.term.TermRepository;
+import shared.models.post.Post;
+import shared.models.post.PostRepository;
+import shared.models.site.SiteRepository;
+import shared.models.term.TermRepository;
 import shared.services.rss.FetchAndSave;
 
 import java.awt.*;
@@ -14,8 +14,6 @@ import java.util.List;
 
 public class PostsController {
     private PostRepository postRepository;
-    private SiteRepository siteRepository;
-    private TermRepository termRepository;
     private MainView mainView;
     private FetchAndSave fetchAndSave;
 
@@ -24,8 +22,6 @@ public class PostsController {
                            TermRepository termRepository,
                            MainView mainView) {
         this.postRepository = postRepository;
-        this.siteRepository = siteRepository;
-        this.termRepository = termRepository;
         this.mainView = mainView;
         fetchAndSave = new FetchAndSave(postRepository, siteRepository, termRepository);
 
@@ -36,9 +32,9 @@ public class PostsController {
     private void setupComponents() {
         mainView.postsTable.setModel(new PostsTableModel());
 
-        mainView.verifyNowButton.addActionListener((action) -> verifyNow());
-        mainView.openButton.addActionListener((action) -> open());
-        mainView.excluirSelecionadoButton.addActionListener((action) -> deletePostHandler());
+        mainView.verifyNowButton.addActionListener((action) -> fetchNowHandler());
+        mainView.postsOpenButton.addActionListener((action) -> openPostHandler());
+        mainView.postsDeleteButton.addActionListener((action) -> deletePostHandler());
     }
 
     public void refreshPostsTable() {
@@ -46,12 +42,12 @@ public class PostsController {
         ((PostsTableModel)mainView.postsTable.getModel()).setResources(posts);
     }
 
-    private void verifyNow() {
+    private void fetchNowHandler() {
         fetchAndSave.fetchAndSave();
         refreshPostsTable();
     }
 
-    private void open() {
+    private void openPostHandler() {
         Post post = getSelectedPost();
 
         openWebpage(post.getUrl());
@@ -72,7 +68,7 @@ public class PostsController {
                 .get(index);
     }
 
-    public void openWebpage(String urlString) {
+    private void openWebpage(String urlString) {
         try {
             Desktop.getDesktop().browse(new URL(urlString).toURI());
         } catch (Exception e) {

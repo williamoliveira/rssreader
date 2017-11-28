@@ -23,8 +23,8 @@ public class MainView extends JDialog {
     public JTable schedulesTable;
     public JFormattedTextField schedulesTimeInput;
     public JButton verifyNowButton;
-    public JButton openButton;
-    public JButton excluirSelecionadoButton;
+    public JButton postsOpenButton;
+    public JButton postsDeleteButton;
 
     public MainView() {
         super();
@@ -34,6 +34,5 @@ public class MainView extends JDialog {
 
     public void createUIComponents() {
     }
-
 
 }

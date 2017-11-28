@@ -4,8 +4,8 @@ import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shared.entities.schedule.Schedule;
-import shared.entities.schedule.ScheduleRepository;
+import shared.models.schedule.Schedule;
+import shared.models.schedule.ScheduleRepository;
 
 import java.util.List;
 

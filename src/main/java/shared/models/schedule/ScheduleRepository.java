@@ -1,4 +1,4 @@
-package shared.entities.schedule;
+package shared.models.schedule;
 
 import shared.repository.Repository;
 

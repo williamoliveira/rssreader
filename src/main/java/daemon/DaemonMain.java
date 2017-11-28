@@ -3,7 +3,7 @@ package daemon;
 import daemon.rmi.Server;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import shared.entities.schedule.ScheduleRepository;
+import shared.models.schedule.ScheduleRepository;
 import shared.repository.RepositoryFactory;
 
 public class DaemonMain {

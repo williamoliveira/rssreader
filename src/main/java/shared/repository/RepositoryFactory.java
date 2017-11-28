@@ -1,10 +1,10 @@
 package shared.repository;
 
-import shared.entities.schedule.ScheduleRepository;
-import shared.entities.site.SiteRepository;
-import shared.entities.term.TermRepository;
+import shared.models.schedule.ScheduleRepository;
+import shared.models.site.SiteRepository;
+import shared.models.term.TermRepository;
 import shared.repository.jpa.RepositoryJpaFactory;
-import shared.entities.post.PostRepository;
+import shared.models.post.PostRepository;
 
 public abstract class RepositoryFactory {
 

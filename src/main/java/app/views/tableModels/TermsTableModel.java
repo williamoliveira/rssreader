@@ -1,6 +1,6 @@
 package app.views.tableModels;
 
-import shared.entities.term.Term;
+import shared.models.term.Term;
 
 public class TermsTableModel extends ResourceTableModel<Term>{
 

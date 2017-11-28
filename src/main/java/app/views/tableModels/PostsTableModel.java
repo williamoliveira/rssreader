@@ -1,6 +1,6 @@
 package app.views.tableModels;
 
-import shared.entities.post.Post;
+import shared.models.post.Post;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

@@ -1,4 +1,4 @@
-package shared.entities.term;
+package shared.models.schedule;
 
 import shared.repository.jpa.Timestamped;
 
@@ -6,16 +6,16 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "term")
-public class Term implements Timestamped {
+@Table(name = "schedules")
+public class Schedule implements Timestamped {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "term")
-    private String term;
+    @Column(name = "time")
+    private String time;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -23,18 +23,26 @@ public class Term implements Timestamped {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Term() {
+    public Schedule() {
     }
 
-    public Term(long id, String term, Date createdAt, Date updatedAt) {
+    public Schedule(long id, String time, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.term = term;
+        this.time = time;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public Term(String term) {
-        this.term = term;
+    public Schedule(String time) {
+        this.time = time;
+    }
+
+    public int getHour() {
+        return Integer.parseInt(time.split(":")[0]);
+    }
+
+    public int getMinutes() {
+        return Integer.parseInt(time.split(":")[1]);
     }
 
     public long getId() {
@@ -45,12 +53,12 @@ public class Term implements Timestamped {
         this.id = id;
     }
 
-    public String getTerm() {
-        return term;
+    public String getTime() {
+        return time;
     }
 
-    public void setTerm(String term) {
-        this.term = term;
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @Override
