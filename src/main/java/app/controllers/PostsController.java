@@ -38,6 +38,7 @@ public class PostsController {
 
         mainView.verifyNowButton.addActionListener((action) -> verifyNow());
         mainView.openButton.addActionListener((action) -> open());
+        mainView.excluirSelecionadoButton.addActionListener((action) -> deletePostHandler());
     }
 
     public void refreshPostsTable() {
@@ -56,6 +57,13 @@ public class PostsController {
         openWebpage(post.getUrl());
     }
 
+    private void deletePostHandler() {
+        Post post = getSelectedPost();
+
+        postRepository.transaction(() -> postRepository.delete(post));
+        refreshPostsTable();
+    }
+    
     private Post getSelectedPost() {
         int index = mainView.postsTable.getSelectedRow();
 

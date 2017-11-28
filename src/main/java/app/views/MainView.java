@@ -24,6 +24,7 @@ public class MainView extends JDialog {
     public JFormattedTextField schedulesTimeInput;
     public JButton verifyNowButton;
     public JButton openButton;
+    public JButton excluirSelecionadoButton;
 
     public MainView() {
         super();
