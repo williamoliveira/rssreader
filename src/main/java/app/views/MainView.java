@@ -1,11 +1,6 @@
 package app.views;
 
-import app.views.tableModels.PostsTableModel;
-import app.views.tableModels.SitesTableModel;
-import shared.entities.post.Post;
-
 import javax.swing.*;
-import java.util.List;
 
 public class MainView extends JDialog {
     private JPanel contentPane;
@@ -27,6 +22,7 @@ public class MainView extends JDialog {
     public JButton schedulesDeleteButton;
     public JTable schedulesTable;
     public JFormattedTextField schedulesTimeInput;
+    public JButton verifyNowButton;
 
     public MainView() {
         super();

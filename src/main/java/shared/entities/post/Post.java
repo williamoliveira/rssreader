@@ -14,7 +14,7 @@ public class Post implements Timestamped {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "url")
+    @Column(name = "url", unique = true)
     private String url;
 
     @Column(name = "title")
@@ -106,5 +106,18 @@ public class Post implements Timestamped {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", url='" + url + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", publishedAt=" + publishedAt +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                '}';
     }
 }

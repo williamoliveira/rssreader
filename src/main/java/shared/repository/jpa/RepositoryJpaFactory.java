@@ -26,7 +26,7 @@ public class RepositoryJpaFactory extends RepositoryFactory {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        manager.close();
+//        manager.close();
     }
 
     public PostRepository getPostRepository() {

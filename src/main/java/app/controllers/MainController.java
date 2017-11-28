@@ -36,14 +36,10 @@ public class MainController {
     private void setupComponents() {
         mainView = new MainView();
         
-        SitesController sitesController =
-                new SitesController(siteRepository, mainView);
-        PostsController postsController =
-                new PostsController(postRepository, mainView);
-        TermsController termsController =
-                new TermsController(termRepository, mainView);
-        SchedulesController schedulesController =
-                new SchedulesController(scheduleRepository, mainView);
+        new SitesController(siteRepository, mainView);
+        new PostsController(postRepository, siteRepository, termRepository, mainView);
+        new TermsController(termRepository, mainView);
+        new SchedulesController(scheduleRepository, mainView);
     }
 
     private void setLookAndFeel() {

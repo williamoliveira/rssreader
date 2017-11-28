@@ -7,15 +7,14 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
-import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 
 public class RepositoryJpa<T> implements Repository<T> {
 
-    private EntityManager manager;
+    protected EntityManager manager;
 
-    private Class<T> entityClass;
+    protected Class<T> entityClass;
 
     public RepositoryJpa(EntityManager manager, Class<T> entityClass) {
         this.manager = manager;
