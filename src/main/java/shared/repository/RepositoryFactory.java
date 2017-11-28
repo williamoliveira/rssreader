@@ -10,9 +10,16 @@ public abstract class RepositoryFactory {
 
     private static Class CURRENT_FACTORY_CLASS = RepositoryJpaFactory.class;
 
+    private static RepositoryFactory repositoryFactoryInstance;
+
     public static RepositoryFactory getFactory() {
         try {
-            return (RepositoryFactory) CURRENT_FACTORY_CLASS.newInstance();
+            if (repositoryFactoryInstance == null) {
+                repositoryFactoryInstance = (RepositoryFactory) CURRENT_FACTORY_CLASS.newInstance();
+            }
+
+            return repositoryFactoryInstance;
+
         } catch (InstantiationException | IllegalAccessException e) {
             throw new RuntimeException();
         }

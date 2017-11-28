@@ -1,4 +1,4 @@
-package shared.rss;
+package shared.services.rss;
 
 import org.simpleframework.xml.*;
 

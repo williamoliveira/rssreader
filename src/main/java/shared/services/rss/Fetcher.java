@@ -1,4 +1,4 @@
-package shared.rss;
+package shared.services.rss;
 
 import com.github.kevinsawicki.http.HttpRequest;
 import org.simpleframework.xml.Serializer;
@@ -13,11 +13,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Verifier {
+public class Fetcher {
 
-    public static List<Post> verify(List<Site> sites, List<Term> terms) {
+    public static List<Post> fetch(List<Site> sites, List<Term> terms) {
         return sites.parallelStream()
-                .map(site -> verify(site, terms))
+                .map(site -> fetch(site, terms))
                 .reduce((posts1, posts2) -> {
                     posts1.addAll(posts2);
 
@@ -26,7 +26,7 @@ public class Verifier {
                 .get();
     }
 
-    public static List<Post> verify(Site site, List<Term> terms) {
+    public static List<Post> fetch(Site site, List<Term> terms) {
         String response = HttpRequest.get(site.getUrl()).body();
 
         Rss rss = responseToRss(response);
@@ -38,7 +38,7 @@ public class Verifier {
 
     private static List<Post> rssItemListToPostList(List<Rss.Channel.Item> items) {
         return items.parallelStream()
-                .map(Verifier::rssItemToPost).collect(Collectors.toList());
+                .map(Fetcher::rssItemToPost).collect(Collectors.toList());
     }
 
     private static Post rssItemToPost(Rss.Channel.Item item) {

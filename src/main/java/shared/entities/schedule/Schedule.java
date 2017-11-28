@@ -37,6 +37,14 @@ public class Schedule implements Timestamped {
         this.time = time;
     }
 
+    public int getHour() {
+        return Integer.parseInt(time.split(":")[0]);
+    }
+
+    public int getMinutes() {
+        return Integer.parseInt(time.split(":")[1]);
+    }
+
     public long getId() {
         return id;
     }

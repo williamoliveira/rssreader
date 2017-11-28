@@ -4,12 +4,18 @@ import app.views.MainView;
 import app.views.tableModels.SchedulesTableModel;
 import shared.entities.schedule.Schedule;
 import shared.entities.schedule.ScheduleRepository;
+import shared.rmi.DaemonRemoteInterface;
 
 import javax.swing.*;
-import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.text.ParseException;
 import java.util.List;
+
+import static javax.swing.JFormattedTextField.*;
 
 public class SchedulesController {
 
@@ -27,9 +33,9 @@ public class SchedulesController {
     private void setupComponents() {
         mainView.schedulesTable.setModel(new SchedulesTableModel());
 
-        mainView.schedulesTimeInput.setFormatterFactory(new JFormattedTextField.AbstractFormatterFactory() {
+        mainView.schedulesTimeInput.setFormatterFactory(new AbstractFormatterFactory() {
             @Override
-            public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+            public AbstractFormatter getFormatter(JFormattedTextField tf) {
                 try {
                     return new MaskFormatter("##:##");
                 } catch (ParseException e) {
@@ -49,6 +55,26 @@ public class SchedulesController {
         ((SchedulesTableModel)mainView.schedulesTable.getModel()).setResources(schedules);
     }
 
+    private void refreshDaemonSchedulesIfRunning() {
+        refreshDaemonSchedulesIfRunning(9192);
+    }
+
+    private void refreshDaemonSchedulesIfRunning(int port) {
+        try {
+            DaemonRemoteInterface daemonRemoteInterface =
+                    (DaemonRemoteInterface) Naming.lookup("rmi://127.0.0.1:" + port + "/DaemonRemoteInterface");
+
+            daemonRemoteInterface.refreshSchedules();
+        } catch (NotBoundException | RemoteException | MalformedURLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshSchedules() {
+        refreshSchedulesTable();
+        refreshDaemonSchedulesIfRunning();
+    }
+
     private void saveScheduleHandler() {
         String time = mainView.schedulesTimeInput.getText();
 
@@ -63,14 +89,14 @@ public class SchedulesController {
 
         scheduleRepository.transaction(() -> scheduleRepository.save(schedule));
 
-        refreshSchedulesTable();
+        refreshSchedules();
     }
 
     private void deleteScheduleHandler() {
         Schedule schedule = getSelectedSchedule();
 
         scheduleRepository.transaction(() -> scheduleRepository.delete(schedule));
-        refreshSchedulesTable();
+        refreshSchedules();
     }
 
     private Schedule getSelectedSchedule() {
