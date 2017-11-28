@@ -2,6 +2,9 @@ package app.views.tableModels;
 
 import shared.entities.post.Post;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class PostsTableModel extends ResourceTableModel<Post>{
 
     @Override
@@ -10,13 +13,20 @@ public class PostsTableModel extends ResourceTableModel<Post>{
 
         switch (columnIndex) {
             case 0: return post.getTitle();
-            case 1: return post.getDescription();
+            case 1: return post.getUrl();
+            case 2: return dateToString(post.getPublishedAt());
             default: return null;
         }
     }
 
     @Override
     public String[] getHeaders() {
-        return new String[]{"Título", "Descrição"};
+        return new String[]{"Título", "Link", "Publicado em"};
+    }
+
+    private String dateToString(Date date) {
+        if (date == null) return "";
+
+        return new SimpleDateFormat("dd/MM/YYYY HH:mm").format(date);
     }
 }
