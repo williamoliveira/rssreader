@@ -8,6 +8,7 @@ import shared.entities.schedule.ScheduleRepository;
 import shared.entities.site.SiteRepository;
 import shared.entities.term.TermRepository;
 import shared.repository.RepositoryFactory;
+import shared.services.email.EmailSender;
 
 public class AppMain {
     private static Logger logger = LoggerFactory.getLogger(AppMain.class);
