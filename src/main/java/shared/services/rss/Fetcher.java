@@ -61,8 +61,9 @@ public class Fetcher {
     private static Rss responseToRss(String source) {
         Serializer serializer = new Persister();
 
+        String fixedSource = source.trim().replaceFirst("^([\\W]+)<","<");
         try {
-            return serializer.read(Rss.class, source);
+            return serializer.read(Rss.class, fixedSource);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +74,7 @@ public class Fetcher {
             return new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz")
                     .parse(dateString);
         } catch (ParseException e) {
-            throw new RuntimeException();
+            return null;
         }
     }
 }
