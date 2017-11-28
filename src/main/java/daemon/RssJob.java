@@ -3,6 +3,8 @@ package daemon;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shared.entities.post.PostRepository;
 import shared.entities.site.SiteRepository;
 import shared.entities.term.TermRepository;
@@ -17,6 +19,8 @@ import java.rmi.RemoteException;
 
 public class RssJob implements Job {
 
+    private static Logger logger = LoggerFactory.getLogger(RssJob.class);
+
     public void execute(JobExecutionContext jobExecutionContext)
             throws JobExecutionException {
         PostRepository postRepository
@@ -25,7 +29,11 @@ public class RssJob implements Job {
                 = RepositoryFactory.getFactory().getSiteRepository();
         TermRepository termRepository
                 = RepositoryFactory.getFactory().getTermRepository();
-        FetchAndSave fetchAndSave = new FetchAndSave(postRepository, siteRepository, termRepository);
+        FetchAndSave fetchAndSave = new FetchAndSave(
+                postRepository,
+                siteRepository,
+                termRepository
+        );
 
         fetchAndSave.fetchAndSave();
         refreshTableIfAppOpen();
@@ -42,7 +50,7 @@ public class RssJob implements Job {
 
             appRemoteInterface.refreshPostsTable();
         } catch (NotBoundException | MalformedURLException | RemoteException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 }

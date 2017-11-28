@@ -2,6 +2,8 @@ package daemon;
 
 import org.quartz.*;
 import org.quartz.impl.StdSchedulerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shared.entities.schedule.Schedule;
 import shared.entities.schedule.ScheduleRepository;
 
@@ -13,6 +15,8 @@ import static org.quartz.TriggerBuilder.newTrigger;
 
 public class Scheduler {
 
+    private static Logger logger = LoggerFactory.getLogger(Scheduler.class);
+
     private ScheduleRepository scheduleRepository;
     private org.quartz.Scheduler scheduler;
 
@@ -23,7 +27,7 @@ public class Scheduler {
         try {
             scheduler = sf.getScheduler();
         } catch (SchedulerException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
@@ -57,7 +61,7 @@ public class Scheduler {
             scheduler.scheduleJob(job, trigger);
             scheduler.start();
         } catch (SchedulerException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 }

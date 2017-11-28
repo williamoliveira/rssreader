@@ -1,7 +1,8 @@
 package daemon.rmi;
 
 import daemon.Scheduler;
-import shared.rmi.AppRemoteInterface;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import shared.rmi.DaemonRemoteInterface;
 
 import java.rmi.registry.LocateRegistry;
@@ -9,6 +10,8 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Server {
+
+    private static Logger logger = LoggerFactory.getLogger(Server.class);
 
     private Scheduler scheduler;
 
@@ -27,7 +30,7 @@ public class Server {
             registry.bind("DaemonRemoteInterface", stub);
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(), e);
         }
     }
 
